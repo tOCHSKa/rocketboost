@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 text-black min-h-screen flex flex-col items-center justify-center space-y-6">
+
+  <h1 data-i18n="title" class="text-4xl font-bold"></h1>
+  <p data-i18n="description" class="text-lg text-black"></p>
+
+  <select id="language-switcher" class="mt-4 px-4 py-2 border rounded shadow bg-white text-gray-800">
+    <option value="fr">Français</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    const translations = {
+      fr: {
+        title: "Bienvenue sur mon site",
+        description: "Ceci est une démonstration multilingue avec Tailwind CSS."
+      },
+      en: {
+        title: "Welcome to my website",
+        description: "This is a multilingual demo using Tailwind CSS."
+      }
+    };
+  
+    function applyTranslations(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = translations[lang][key] || key;
+      });
+    }
+  
+    document.getElementById('language-switcher').addEventListener('change', (e) => {
+      applyTranslations(e.target.value);
+    });
+  
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTranslations('fr');
+    });
+  </script>
+  
+
+</body>
+</html>

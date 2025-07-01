@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - WoW Boost Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        
+        .admin-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 222, 128, 0.1);
+            border-color: rgba(74, 222, 128, 0.4);
+        }
+        
+        .btn-admin {
+            background: linear-gradient(90deg, rgba(74, 222, 128, 0.8) 0%, rgba(34, 211, 238, 0.8) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-admin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 222, 128, 0.3);
+        }
+        
+        .table-row:hover {
+            background-color: rgba(74, 222, 128, 0.05);
+        }
+        
+        .active-nav {
+            background-color: rgba(74, 222, 128, 0.1);
+            border-left: 3px solid rgba(74, 222, 128, 0.8);
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar bg-slate-900 text-gray-300 flex-shrink-0 hidden md:block">
+        <div class="p-4 border-b border-slate-700">
+            <div class="flex items-center space-x-2">
+                <img src="day-one-alliance-or-horde-wow-alliance-logo-11562930470uazxrtsg71-removebg-preview.png" alt="WoW Logo" class="h-10 w-10 rounded">
+                <span class="text-xl font-bold text-emerald-400">R.Jump Boosting</span>
+                <span class="text-xs bg-emerald-500 text-white px-2 py-1 rounded-full">ADMIN</span>
+            </div>
+        </div>
+        
+        <div class="p-4">
+            <div class="flex items-center space-x-3 mb-6">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" class="h-10 w-10 rounded-full">
+                <div>
+                    <p class="font-semibold text-white">Admin User</p>
+                    <p class="text-xs text-gray-400">Super Admin</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg active-nav">
+                            <i class="fas fa-tachometer-alt w-5 text-center text-emerald-400"></i>
+                            <span>Tableau de bord</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-shopping-cart w-5 text-center"></i>
+                            <span>Commandes</span>
+                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-users w-5 text-center"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-user-shield w-5 text-center"></i>
+                            <span>Boosters</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-cog w-5 text-center"></i>
+                            <span>Paramètres</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-chart-line w-5 text-center"></i>
+                            <span>Statistiques</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-ticket-alt w-5 text-center"></i>
+                            <span>Tickets support</span>
+                            <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">3</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="p-4 border-t border-slate-700 mt-auto">
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800">
+                <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                <span>Déconnexion</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top Navigation -->
+        <header class="bg-slate-800 border-b border-slate-700 py-[0.25rem]">
+            <div class="flex items-center justify-between p-4">
+                <div class="flex items-center">
+                    <button class="md:hidden text-gray-300 mr-4">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 class="text-xl font-semibold text-white">Tableau de bord</h1>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="text-gray-300 hover:text-white">
+                            <i class="fas fa-bell text-xl"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <button class="text-gray-300 hover:text-white">
+                            <i class="fas fa-envelope text-xl"></i>
+                            <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" class="h-8 w-8 rounded-full">
+                        <span class="text-gray-300 hidden md:inline">Admin User</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6 bg-slate-900">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Bienvenue, Admin</h2>
+                <p class="text-gray-400">Voici un aperçu de votre activité récente</p>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="admin-card rounded-lg p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-400">Commandes aujourd'hui</p>
+                            <p class="text-3xl font-bold text-white mt-2">12</p>
+                        </div>
+                        <div class="bg-emerald-500/20 p-3 rounded-lg">
+                            <i class="fas fa-shopping-cart text-emerald-400 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-emerald-400 text-sm font-semibold">+15%</span>
+                        <span class="text-gray-400 text-sm ml-1">vs hier</span>
+                    </div>
+                </div>
+                
+                <div class="admin-card rounded-lg p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-400">Revenu aujourd'hui</p>
+                            <p class="text-3xl font-bold text-white mt-2">€1,245</p>
+                        </div>
+                        <div class="bg-blue-500/20 p-3 rounded-lg">
+                            <i class="fas fa-euro-sign text-blue-400 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-emerald-400 text-sm font-semibold">+22%</span>
+                        <span class="text-gray-400 text-sm ml-1">vs hier</span>
+                    </div>
+                </div>
+                
+                <div class="admin-card rounded-lg p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-400">Nouveaux clients</p>
+                            <p class="text-3xl font-bold text-white mt-2">8</p>
+                        </div>
+                        <div class="bg-purple-500/20 p-3 rounded-lg">
+                            <i class="fas fa-user-plus text-purple-400 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-emerald-400 text-sm font-semibold">+5%</span>
+                        <span class="text-gray-400 text-sm ml-1">vs hier</span>
+                    </div>
+                </div>
+                
+                <div class="admin-card rounded-lg p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-400">Tickets ouverts</p>
+                            <p class="text-3xl font-bold text-white mt-2">5</p>
+                        </div>
+                        <div class="bg-red-500/20 p-3 rounded-lg">
+                            <i class="fas fa-ticket-alt text-red-400 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-red-400 text-sm font-semibold">+2</span>
+                        <span class="text-gray-400 text-sm ml-1">vs hier</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Orders and Stats -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Recent Orders -->
+                <div class="lg:col-span-2">
+                    <div class="admin-card rounded-lg p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-semibold text-white">Commandes récentes</h3>
+                            <a href="#" class="text-sm text-emerald-400 hover:underline">Voir tout</a>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead>
+                                    <tr class="text-left text-gray-400 border-b border-slate-700">
+                                        <th class="pb-3">ID</th>
+                                        <th class="pb-3">Client</th>
+                                        <th class="pb-3">Service</th>
+                                        <th class="pb-3">Statut</th>
+                                        <th class="pb-3 text-right">Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700">
+                                    <tr class="table-row">
+                                        <td class="py-3 text-sm font-medium text-white">#5423</td>
+                                        <td class="py-3 text-sm text-gray-400">Jean D.</td>
+                                        <td class="py-3 text-sm text-gray-400">Boost 1-60</td>
+                                        <td class="py-3">
+                                            <span class="px-2 py-1 text-xs rounded-full bg-emerald-500/20 text-emerald-400">En cours</span>
+                                        </td>
+                                        <td class="py-3 text-sm text-gray-400 text-right">€79.99</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="py-3 text-sm font-medium text-white">#5422</td>
+                                        <td class="py-3 text-sm text-gray-400">Marie L.</td>
+                                        <td class="py-3 text-sm text-gray-400">PvP Rank 6-10</td>
+                                        <td class="py-3">
+                                            <span class="px-2 py-1 text-xs rounded-full bg-yellow-500/20 text-yellow-400">En attente</span>
+                                        </td>
+                                        <td class="py-3 text-sm text-gray-400 text-right">€99.99</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="py-3 text-sm font-medium text-white">#5421</td>
+                                        <td class="py-3 text-sm text-gray-400">Pierre T.</td>
+                                        <td class="py-3 text-sm text-gray-400">Boost 41-60</td>
+                                        <td class="py-3">
+                                            <span class="px-2 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400">Confirmé</span>
+                                        </td>
+                                        <td class="py-3 text-sm text-gray-400 text-right">€79.99</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="py-3 text-sm font-medium text-white">#5420</td>
+                                        <td class="py-3 text-sm text-gray-400">Sophie M.</td>
+                                        <td class="py-3 text-sm text-gray-400">PvP Rank 1-5</td>
+                                        <td class="py-3">
+                                            <span class="px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400">Terminé</span>
+                                        </td>
+                                        <td class="py-3 text-sm text-gray-400 text-right">€49.99</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="py-3 text-sm font-medium text-white">#5419</td>
+                                        <td class="py-3 text-sm text-gray-400">Luc B.</td>
+                                        <td class="py-3 text-sm text-gray-400">Boost 1-20</td>
+                                        <td class="py-3">
+                                            <span class="px-2 py-1 text-xs rounded-full bg-red-500/20 text-red-400">Annulé</span>
+                                        </td>
+                                        <td class="py-3 text-sm text-gray-400 text-right">€29.99</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div>
+                    <div class="admin-card rounded-lg p-6 mb-6">
+                        <h3 class="text-lg font-semibold text-white mb-6">Statistiques rapides</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-400">Boost de niveau</span>
+                                    <span class="text-white font-medium">65%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-emerald-400 h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-400">Boost PvP</span>
+                                    <span class="text-white font-medium">35%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-blue-400 h-2 rounded-full" style="width: 35%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-400">Clients satisfaits</span>
+                                    <span class="text-white font-medium">92%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-purple-400 h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700">
+                            <h4 class="text-sm font-semibold text-white mb-3">Répartition des revenus</h4>
+                            <div class="flex justify-between text-xs text-gray-400">
+                                <div class="text-center">
+                                    <div class="h-16 w-16 mx-auto rounded-full border-4 border-emerald-400 flex items-center justify-center mb-1">65%</div>
+                                    <span>Niveau</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-16 w-16 mx-auto rounded-full border-4 border-blue-400 flex items-center justify-center mb-1">35%</div>
+                                    <span>PvP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-white mb-6">Actions rapides</h3>
+                        
+                        <div class="space-y-3">
+                            <button class="btn-admin w-full py-2 rounded-lg text-white font-medium text-sm flex items-center justify-center space-x-2">
+                                <i class="fas fa-plus"></i>
+                                <span>Ajouter un service</span>
+                            </button>
+                            
+                            <button class="w-full py-2 rounded-lg border border-emerald-400 text-emerald-400 font-medium text-sm flex items-center justify-center space-x-2 hover:bg-emerald-400/10">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Ajouter un booster</span>
+                            </button>
+                            
+                            <button class="w-full py-2 rounded-lg border border-blue-400 text-blue-400 font-medium text-sm flex items-center justify-center space-x-2 hover:bg-blue-400/10">
+                                <i class="fas fa-envelope"></i>
+                                <span>Envoyer un email</span>
+                            </button>
+                            
+                            <button class="w-full py-2 rounded-lg border border-purple-400 text-purple-400 font-medium text-sm flex items-center justify-center space-x-2 hover:bg-purple-400/10">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Générer rapport</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Tickets -->
+            <div class="admin-card rounded-lg p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-white">Tickets récents</h3>
+                    <a href="#" class="text-sm text-emerald-400 hover:underline">Voir tout</a>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start p-3 rounded-lg hover:bg-slate-800 border border-slate-700">
+                        <div class="bg-red-500/20 p-2 rounded-lg mr-4">
+                            <i class="fas fa-exclamation-circle text-red-400"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-sm font-medium text-white">Problème avec mon boost</h4>
+                                <span class="text-xs text-gray-400">Il y a 2h</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">Jean D. - #5423</p>
+                            <p class="text-sm text-gray-300 mt-2">Mon booster n'a pas commencé le service comme prévu...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start p-3 rounded-lg hover:bg-slate-800 border border-slate-700">
+                        <div class="bg-yellow-500/20 p-2 rounded-lg mr-4">
+                            <i class="fas fa-question-circle text-yellow-400"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-sm font-medium text-white">Question sur les services</h4>
+                                <span class="text-xs text-gray-400">Il y a 5h</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">Marie L. - #5422</p>
+                            <p class="text-sm text-gray-300 mt-2">Je voudrais savoir si vous proposez des services supplémentaires...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start p-3 rounded-lg hover:bg-slate-800 border border-slate-700">
+                        <div class="bg-blue-500/20 p-2 rounded-lg mr-4">
+                            <i class="fas fa-check-circle text-blue-400"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-sm font-medium text-white">Feedback positif</h4>
+                                <span class="text-xs text-gray-400">Il y a 1j</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">Pierre T. - #5421</p>
+                            <p class="text-sm text-gray-300 mt-2">Très satisfait du service, le booster était professionnel...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.md\\:hidden button').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('absolute');
+            sidebar.classList.toggle('z-50');
+            sidebar.classList.toggle('h-screen');
+        });
+
+        // Active nav item
+        document.querySelectorAll('nav a').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('nav a').forEach(i => i.classList.remove('active-nav'));
+                this.classList.add('active-nav');
+            });
+        });
+
+        // Simulate loading data
+        setTimeout(() => {
+            const loadingElements = document.querySelectorAll('.animate-pulse');
+            loadingElements.forEach(el => el.classList.remove('animate-pulse'));
+        }, 1500);
+    </script>
+</body>
+</html>
