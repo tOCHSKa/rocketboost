@@ -632,7 +632,7 @@
   const desired = document.getElementById("level-range-desired");
   const priceDisplay = document.getElementById("level-price");
 
-  const levelPrices = {
+  const levelPrices = {1: 0,
     2: 0.25, 3: 0.52, 4: 0.77, 5: 1.02, 6: 1.27, 7: 1.52, 8: 1.77, 9: 2.02,
     10: 2.31, 11: 2.62, 12: 2.93, 13: 3.24, 14: 3.55, 15: 3.86,
     16: 6.17, 17: 8.6, 18: 11.79, 19: 13.10, 20: 16.41,
@@ -652,7 +652,7 @@
 
   // Génère les <option>
   function generateOptions() {
-    for (let level = 2; level <= 59; level++) {
+    for (let level = 1; level <= 59; level++) {
       const price = levelPrices[level];
       const opt = document.createElement("option");
       opt.value = level;
